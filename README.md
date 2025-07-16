@@ -4,7 +4,6 @@ How to run
 Install SDL Libraries
 
 Download SDL3
-
 https://libsdl.org/release/?C=M;O=D
 
 Choose this one: SDL3-devel-3.2.10-VC.zip
