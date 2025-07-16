@@ -14,7 +14,6 @@ public:
     int fps = 170;
     bool flipFps = false;
     bool tall = true;
-    int scale = 1;
     int pastLevel = 0;
     pair<bool, bool> renderHit {false,false};
     pair<bool, bool> hit;
@@ -58,36 +57,31 @@ public:
                 if (e.type == SDL_EVENT_QUIT) {
                     quit = true;
                 }
-                scale = (isFullScreen) ? 3 : 1;
                 if (SDL_EVENT_MOUSE_BUTTON_DOWN == e.type) {
                     if (SDL_BUTTON_LEFT == e.button.button) {
                         if (currentLevel == 0) {
-                            if (buttons->level1->clicked(scale)) {
+                            if (buttons->level1->clicked(textures->scale)) {
                                 currentLevel = 1;
                                 newLevelInitialize();
                                 SDL_SetWindowSize(textures->window, mainCharacter->CAMERA_WIDTH, mainCharacter->CAMERA_HEIGHT_TALL);
                                 tall = true;
                                 audio->playLevelWav(currentLevel);
                             }
-                            if (buttons->level2->clicked(scale)) {
+                            if (buttons->level2->clicked(textures->scale)) {
                                 currentLevel = 2;
                                 newLevelInitialize();
-                                if (isFullScreen) {
-                                    scale = 5;
-                                    SDL_SetRenderScale(textures->renderer, 5.0f, 5.0f);
-                                }
                                 SDL_SetWindowSize(textures->window, mainCharacter->CAMERA_WIDTH, mainCharacter->CAMERA_HEIGHT_SHORT);
                                 tall = false;
                             }
-                            if (buttons->exit->clicked(scale)) {
+                            if (buttons->exit->clicked(textures->scale)) {
                                 quit = true;
                             }
                         }
                         if (currentLevel > 0) {
-                            if (buttons->flipFps->clicked(scale)) {
+                            if (buttons->flipFps->clicked(textures->scale)) {
                                 flipFps = true;
                             }
-                            if (buttons->renderHitBoxes->clicked(scale)) {
+                            if (buttons->renderHitBoxes->clicked(textures->scale)) {
                                 renderHit.first = !renderHit.first;
                                 if (renderHit.first && currentKeyStates[SDL_SCANCODE_LCTRL]) {
                                     renderHit.second = !renderHit.second;
@@ -105,7 +99,7 @@ public:
             if (currentKeyStates[SDL_SCANCODE_ESCAPE]) {
                 audio->stopWav();
                 tall = true;
-                scale = 3;
+                textures->scale = 3;
                 SDL_SetRenderDrawColor(textures->renderer, 0, 0, 0, 0);
                 if (isFullScreen) {
                     SDL_SetRenderScale(textures->renderer, 3.0f, 3.0f);

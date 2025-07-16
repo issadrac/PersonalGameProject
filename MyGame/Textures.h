@@ -13,6 +13,8 @@ public:
     vector<SDL_Texture*> platforms;
     SDL_Window* window;
     SDL_Renderer* renderer;
+    int width, height;
+    float scale;
 
     // Static method for texture loading (called only once per game session)
     static SDL_Texture* LoadTexture(SDL_Renderer* render, const string& name) {
@@ -48,6 +50,10 @@ public:
         blueThing = LoadTexture(renderer, "images\\bluething.png");
         flag = LoadTexture(renderer, "images\\flag.png");
         luckyBox = LoadTexture(renderer, "images\\luckybox.png");
+        const SDL_DisplayMode* displayMode = SDL_GetCurrentDisplayMode(1);
+        width = displayMode->w;
+        height = displayMode->h;
+        scale = 1.0f;
     }
     ~Textures() {
         DestroyTextures(platforms);
@@ -58,20 +64,29 @@ public:
         if (isFullScreen) {
             SDL_RenderClear(renderer);
             SDL_SetWindowFullscreen(window, false);  // Switch to windowed mode
-            SDL_SetRenderScale(renderer, 1.0f, 1.0f);
+            scale = 1.0f;
+            SDL_SetRenderScale(renderer, scale, scale);
             isFullScreen = false;
         }
         else {
             SDL_RenderClear(renderer);
             SDL_SetWindowFullscreen(window, true);  // Switch to full-screen mode
             if (cl <= 1) {
-                SDL_SetRenderScale(renderer, 3.0f, 3.0f);
+                if (height >= 1440)
+                    scale = 3.0f;
+                else
+                    scale = 2.3f;
             }
             else {
-                SDL_SetRenderScale(renderer, 5.0f, 5.0f);
+                if (height >= 1440)
+                    scale = 5.0f;
+                else
+                    scale = 3.8f;
+                
             }
             isFullScreen = true;
         }
+        SDL_SetRenderScale(renderer, scale, scale);
         SDL_Delay(100);
     }
     void renderText(float cameraX) {
