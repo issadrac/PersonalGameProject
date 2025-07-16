@@ -16,6 +16,7 @@ Extract all into the same folder for later convenience
 Download the MyGame folder and import everything into Visual Studio 2022 Community Version.
 Right click on MyGame
 <img width="463" height="813" alt="image" src="https://github.com/user-attachments/assets/504d7088-fbc7-45bf-9a04-3b01a989b048" />
+
 Click Properties
 
 On Configuration Properties
