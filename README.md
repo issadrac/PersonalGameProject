@@ -18,7 +18,9 @@ Choose this one: SDL3_ttf-devel-3.1.0-VC.zip
 
 Extract all into the same folder for later convenience 
 
-Download the MyGame folder and import everything into Visual Studio 2022 Community Version.
+Download the MyGame folder and clone everything into Visual Studio 2022 Community Version.
+<img width="364" height="145" alt="image" src="https://github.com/user-attachments/assets/13693a61-20ba-4257-9d10-75579ca80ac1" />
+
 
 Right click on MyGame
 
@@ -31,10 +33,12 @@ Click Properties
     Click on VC++ Directories
 
       On Include Directories (click on the text box, arrow, edit, new line, ...).
+      My include directories are already there in order to show where the include folder is within the folder but you must use your own directory path
 
       Locate the folder where you previously downloaded all the SDL's and include every include folder
 
       On Library Directories (click on the text box, arrow, edit, new line, ...).
+      My Library directories are already there in order to show where the kuv folder is within the folder but you must use your own directory path
 
       Locate the folder where you previously downloaded all the SDL's and include every lib folder and choose x64
 
