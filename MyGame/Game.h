@@ -99,7 +99,7 @@ public:
             if (currentKeyStates[SDL_SCANCODE_ESCAPE]) {
                 audio->stopWav();
                 tall = true;
-                textures->scale = 3;
+                textures->setScale(currentLevel);
                 SDL_SetRenderDrawColor(textures->renderer, 0, 0, 0, 0);
                 if (isFullScreen) {
                     SDL_SetRenderScale(textures->renderer, 3.0f, 3.0f);
@@ -113,8 +113,8 @@ public:
             }
             if (currentLevel > 0) {
                 if (newLevel) {
-                    gamePlatforms->levelPlatforms(currentLevel - 1);
-                    hostileActions->addHostiles(textures, currentLevel - 1);
+                    gamePlatforms->levelPlatforms(currentLevel);
+                    hostileActions->addHostiles(textures, currentLevel);
                     string backgroundLevel = "images\\background" + to_string(currentLevel) + ".png";
                     textures->backgroundT = textures->LoadTexture(textures->renderer, backgroundLevel);
                     newLevel = false;
@@ -275,7 +275,7 @@ public:
             SDL_Delay(3000);
             mainCharacter->reset(gamePlatforms->platforms);
             hostileActions->deleteHostiles();
-            hostileActions->addHostiles(textures, currentLevel - 1);
+            hostileActions->addHostiles(textures, currentLevel);
             renderHit.first = false;
             renderHit.second = false;
             SDL_RenderClear(textures->renderer);
@@ -347,6 +347,6 @@ public:
         SDL_RenderPresent(textures->renderer);
         SDL_Delay(500);
         mainCharacter->reset(gamePlatforms->platforms);
-        hostileActions->reset(textures, currentLevel - 1);
+        hostileActions->reset(textures, currentLevel);
     }
 };

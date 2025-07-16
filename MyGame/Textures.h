@@ -71,23 +71,26 @@ public:
         else {
             SDL_RenderClear(renderer);
             SDL_SetWindowFullscreen(window, true);  // Switch to full-screen mode
-            if (cl <= 1) {
-                if (height >= 1440)
-                    scale = 3.0f;
-                else
-                    scale = 2.3f;
-            }
-            else {
-                if (height >= 1440)
-                    scale = 5.0f;
-                else
-                    scale = 3.8f;
-                
-            }
+            setScale(cl);
             isFullScreen = true;
         }
         SDL_SetRenderScale(renderer, scale, scale);
         SDL_Delay(100);
+    }
+    void setScale(int cl) {
+        if (cl <= 1) {
+            if (height >= 1440)
+                scale = 3.0f;
+            else
+                scale = 2.3f;
+        }
+        else {
+            if (height >= 1440)
+                scale = 5.0f;
+            else
+                scale = 3.8f;
+
+        }
     }
     void renderText(float cameraX) {
         static TTF_Font* font = TTF_OpenFont("dejavu-sans\\DejaVuSans.ttf", 24);

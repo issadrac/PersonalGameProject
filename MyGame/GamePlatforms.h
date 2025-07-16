@@ -15,7 +15,7 @@ public:
     map<int, SDL_FRect, comparator> platforms;
     int id = 0;
     void levelPlatforms(int cl) {
-        if (cl == 0) {
+        if (cl == 1) {
             easyAdd(platforms, 0, 13, 16, 2);
             easyAdd(platforms, 18, 12, 4, 1);
             easyAdd(platforms, 24, 9, 8, 1);
@@ -48,7 +48,7 @@ public:
             goalPlatform = { 144 * 32, 2 * 32, 8 * 32, 10 * 32 };
             flag = { 152 * 32 - 16, 3 * 32, 1 * 32, 1 * 32 };
         }
-        else if (cl == 1) {
+        else if (cl == 2) {
             easyAdd(platforms, 0, 4, 5, 1);
             easyAdd(platforms, 5, 5, 4, 1);
             easyAdd(platforms, 8, 5, 1, 4);

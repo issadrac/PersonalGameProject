@@ -1,5 +1,4 @@
 #pragma once
-
 class Creature {
 public:
 	pair<bool, int> onGround;

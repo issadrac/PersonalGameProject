@@ -50,18 +50,18 @@ public:
 
     }
     void addHostiles(Textures* tex, int cl) {
-        if (cl == 0) {
+        if (cl == 1) {
             appendHostile(tex, Hostile({ 0, 0, 19, 22 }, { 32 * 28, 96, 19, 22 }, { { 32 * 28, 96, 19, 22 } }, 3, 1, tex->blueThing));
             appendHostile(tex, Hostile({ 0, 0, 26, 16 }, { 32 * 46, 32 * 3, 26, 16 }, { {32 * 46, 8, 8, 8} , {32 * 46 + 8, 0, 18, 16} }, 2, 2, tex->uglyWorm, false));
             appendHostile(tex, Hostile({ 0, 0, 26, 16 }, { 32 * 47, 32 * 3, 26, 16 }, { {32 * 47, 8, 8, 8} , {32 * 47 + 8, 0, 18, 16} }, 2, 2, tex->uglyWorm, false));
             appendHostile(tex, Hostile({ 0, 0, 26, 16 }, { 32 * 82, 32 * 5, 26, 16 }, { {32 * 80, 8, 8, 8} , {32 * 80 + 8, 0, 18, 16} }, 1, 2, tex->uglyWorm, false));
             appendHostile(tex, Hostile({ 0, 0, 19, 22 }, { 32 * 133, 32 * 10, 19, 22 }, { { 32 * 133, 32 * 10, 19, 22 } }, 3, 1, tex->blueThing));
         }
-        else if (cl == 1) {
+        else if (cl == 2) {
             appendHostile(tex, Hostile({ 0, 0, 26, 16 }, { 32 * 6 + 10, 96, 26, 16 }, { {32 * 6 + 10, 104, 8, 8} , {32 * 6 + 18, 96, 18, 16} }, 4, 2, tex->uglyWorm));
             appendHostile(tex, Hostile({ 0, 0, 19, 22 }, { 32 * 15, 96, 19, 22 }, { { 32 * 15, 96, 19, 22 } }, 6, 1, tex->blueThing, false));
         }
-        else if (cl == 2) {
+        else if (cl == 3) {
 
         }
     }
