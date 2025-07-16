@@ -3,22 +3,18 @@ How to run
 
 Install SDL Libraries
 
-Download SDL3
-https://libsdl.org/release/?C=M;O=D
+Download SDL3 https://libsdl.org/release/?C=M;O=D
 
 Choose this one: SDL3-devel-3.2.10-VC.zip
 
-Download SDL3_image
-
-https://www.libsdl.org/projects/SDL_image/release/?C=M;O=D
+Download SDL3_image https://www.libsdl.org/projects/SDL_image/release/?C=M;O=D
 
 Choose this one: SDL3_image-devel-3.2.4-VC.zip
 
-Download SDL3_ttf
-
-https://www.libsdl.org/projects/SDL_ttf/release/
+Download SDL3_ttf https://www.libsdl.org/projects/SDL_ttf/release/
 
 Choose this one: SDL3_ttf-devel-3.1.0-VC.zip
+
 
 Extract all into the same folder for later convenience 
 
