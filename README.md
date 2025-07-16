@@ -26,24 +26,24 @@ Right click on MyGame
 
 <img width="463" height="813" alt="image" src="https://github.com/user-attachments/assets/504d7088-fbc7-45bf-9a04-3b01a989b048" />
 
-Click Properties
+Click Properties and On Configuration Properties
 
-  On Configuration Properties
+Click on VC++ Directories
 
-    Click on VC++ Directories
-
-      On Include Directories (click on the text box, arrow, edit, new line, ...).
-      My include directories are already there in order to show where the include folder is within the folder but you must use your own directory path
-
-      Locate the folder where you previously downloaded all the SDL's and include every include folder
-
-      On Library Directories (click on the text box, arrow, edit, new line, ...).
-      My Library directories are already there in order to show where the kuv folder is within the folder but you must use your own directory path
-
-      Locate the folder where you previously downloaded all the SDL's and include every lib folder and choose x64
-
-    Click on Linker->Input
-
-      On Additional Dependencies write this: SDL3.lib;SDL3_image.lib;SDL3_ttf.lib
+ On Include Directories (click on the text box, arrow, edit, new line, ...)
+ 
+ My include directories are already there in order to show where the include folder is within the folder but you must use your own directory path
+ 
+ Locate the folder where you previously downloaded all the SDL's and include every include folder
+ 
+ On Library Directories (click on the text box, arrow, edit, new line, ...).
+ 
+ My Library directories are already there in order to show where the kuv folder is within the folder but you must use your own directory path
+ 
+ Locate the folder where you previously downloaded all the SDL's and include every lib folder and choose x64
+ 
+ Click on Linker->Input
+ 
+ On Additional Dependencies write this: SDL3.lib;SDL3_image.lib;SDL3_ttf.lib
 
 Hit Apply and Run
