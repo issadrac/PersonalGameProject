@@ -38,8 +38,8 @@ Click Properties
 
       Locate the folder where you previously downloaded all the SDL's and include every lib folder and choose x64
 
-  Click on Linker->Input
+    Click on Linker->Input
 
-    On Additional Dependencies write this: SDL3.lib;SDL3_image.lib;SDL3_ttf.lib
+      On Additional Dependencies write this: SDL3.lib;SDL3_image.lib;SDL3_ttf.lib
 
 Hit Apply and Run
