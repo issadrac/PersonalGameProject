@@ -26,22 +26,20 @@ Right click on MyGame
 
 Click Properties
 
-On Configuration Properties
+  On Configuration Properties
 
-Click on VC++ Directories
+    Click on VC++ Directories
 
-On Include Directories (click on the text box, arrow, edit, new line, ...).
+      On Include Directories (click on the text box, arrow, edit, new line, ...).
 
-Locate the folder where you previously downloaded all the SDL's and include every include folder
+      Locate the folder where you previously downloaded all the SDL's and include every include folder
 
-On Library Directories (click on the text box, arrow, edit, new line, ...).
+      On Library Directories (click on the text box, arrow, edit, new line, ...).
 
-Locate the folder where you previously downloaded all the SDL's and include every lib folder and choose x64
+      Locate the folder where you previously downloaded all the SDL's and include every lib folder and choose x64
 
-On Configuration Properties
+  Click on Linker->Input
 
-Click on Linker->Input
-
-On Additional Dependencies write this: SDL3.lib;SDL3_image.lib;SDL3_ttf.lib
+    On Additional Dependencies write this: SDL3.lib;SDL3_image.lib;SDL3_ttf.lib
 
 Hit Apply and Run
