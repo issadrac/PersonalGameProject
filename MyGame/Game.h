@@ -63,15 +63,29 @@ public:
                             if (buttons->level1->clicked(textures->scale)) {
                                 currentLevel = 1;
                                 newLevelInitialize();
-                                SDL_SetWindowSize(textures->window, mainCharacter->CAMERA_WIDTH, mainCharacter->CAMERA_HEIGHT_TALL);
+                                if (isFullScreen) {
+                                    textures->setFullScreen(isFullScreen, currentLevel, true);
+                                    SDL_SetWindowSize(textures->window, mainCharacter->CAMERA_WIDTH, mainCharacter->CAMERA_HEIGHT_TALL);
+                                    textures->setFullScreen(isFullScreen, currentLevel, true);
+                                }
+                                else
+                                    SDL_SetWindowSize(textures->window, mainCharacter->CAMERA_WIDTH, mainCharacter->CAMERA_HEIGHT_TALL);
                                 tall = true;
                                 audio->playLevelWav(currentLevel);
                             }
                             if (buttons->level2->clicked(textures->scale)) {
                                 currentLevel = 2;
                                 newLevelInitialize();
-                                SDL_SetWindowSize(textures->window, mainCharacter->CAMERA_WIDTH, mainCharacter->CAMERA_HEIGHT_SHORT);
+                                if (isFullScreen) {
+                                    textures->setFullScreen(isFullScreen, currentLevel, true);
+                                    SDL_SetWindowSize(textures->window, mainCharacter->CAMERA_WIDTH, mainCharacter->CAMERA_HEIGHT_SHORT);
+                                    textures->setFullScreen(isFullScreen, currentLevel, true);
+                                }
+                                else
+                                    SDL_SetWindowSize(textures->window, mainCharacter->CAMERA_WIDTH, mainCharacter->CAMERA_HEIGHT_SHORT);
+                                
                                 tall = false;
+                                audio->playLevelWav(currentLevel);
                             }
                             if (buttons->exit->clicked(textures->scale)) {
                                 quit = true;
@@ -99,12 +113,15 @@ public:
             if (currentKeyStates[SDL_SCANCODE_ESCAPE]) {
                 audio->stopWav();
                 tall = true;
-                textures->setScale(currentLevel);
                 SDL_SetRenderDrawColor(textures->renderer, 0, 0, 0, 0);
-                if (isFullScreen) {
-                    SDL_SetRenderScale(textures->renderer, 3.0f, 3.0f);
-                }
                 currentLevel = 0;
+                if (isFullScreen) {
+                    textures->setFullScreen(isFullScreen, currentLevel, true);
+                    SDL_SetWindowSize(textures->window, mainCharacter->CAMERA_WIDTH, mainCharacter->CAMERA_HEIGHT_SHORT);
+                    textures->setFullScreen(isFullScreen, currentLevel, true);
+                }
+                else
+                    SDL_SetWindowSize(textures->window, mainCharacter->CAMERA_WIDTH, mainCharacter->CAMERA_HEIGHT_SHORT);
                 renderHit.first = false;
                 newLevel = true;
             }
@@ -138,13 +155,15 @@ public:
         SDL_ResumeAudioStreamDevice(audio->levelStream);
         if (pastLevel != currentLevel) {
             pastLevel = currentLevel;
+            SDL_FlushAudioStream(audio->levelStream);
             gamePlatforms->deletePlatforms();
             hostileActions->deleteHostiles();
             mainCharacter->camera.x = 0;
             mainCharacter->charDestRect.y = 0;
             mainCharacter->charDestRect.x = 32 * 3;
             newLevel = true;
-
+            if(isFullScreen)
+                textures->setScale(currentLevel);
         }
         else {
             newLevel = false;
@@ -157,7 +176,7 @@ public:
         actualPlatforms.clear();
         SDL_FRect bgRect;
         SDL_FRect addition;
-        if (currentLevel == 1) {
+        if (tall) {
             bgRect = { mainCharacter->camera.x, 0, mainCharacter->CAMERA_WIDTH * 2, mainCharacter->CAMERA_HEIGHT_TALL };
             addition = { 0, 0, mainCharacter->CAMERA_WIDTH * 2, mainCharacter->CAMERA_HEIGHT_TALL };
         }

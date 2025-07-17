@@ -108,7 +108,7 @@ public:
 	}
 	void bounceAfterHostileHit(const bool* currentKeyStates, Audio* audio) {
 		velocityY = -2.5f;
-		if (currentKeyStates[SDL_SCANCODE_UP]) {
+		if (currentKeyStates[SDL_SCANCODE_UP] || currentKeyStates[SDL_SCANCODE_SPACE]) {
 			velocityY = -4.0f;
 			audio->playSomething("strongpop");
 		}
@@ -117,7 +117,7 @@ public:
 		}
 		onGround.first = false;
 		if (!onGround.first) {
-			if (currentKeyStates[SDL_SCANCODE_UP]) {
+			if (currentKeyStates[SDL_SCANCODE_UP] || currentKeyStates[SDL_SCANCODE_SPACE]) {
 				fall(true);
 			}
 			else {
@@ -131,12 +131,12 @@ public:
 		}
 	}
 	void jump(vector<SDL_FRect> platforms, Textures* textures, const bool* currentKeyStates) {
-		if (currentKeyStates[SDL_SCANCODE_UP] && onGround.first) {  // Check if on the ground and jump key is pressed
+		if ((currentKeyStates[SDL_SCANCODE_UP] || currentKeyStates[SDL_SCANCODE_SPACE]) && onGround.first) {  // Check if on the ground and jump key is pressed
 			velocityY = jumpPower;  // Apply initial jump velocity
 			onGround.first = false;
 		}
 		if (!onGround.first) {
-			if (currentKeyStates[SDL_SCANCODE_UP])
+			if (currentKeyStates[SDL_SCANCODE_UP] || currentKeyStates[SDL_SCANCODE_SPACE])
 				fall(true);
 			else
 				fall();

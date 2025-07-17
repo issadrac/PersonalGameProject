@@ -44,7 +44,7 @@ public:
         if (!renderer) {
             cout << "Renderer could not be created! SDL_Error: " << SDL_GetError() << endl;
         }
-        link=LoadTexture(renderer, "images\\Link.png");
+        link = LoadTexture(renderer, "images\\Link.png");
         uglyWorm = LoadTexture(renderer, "images\\uglyWorm.png");
         movingPlatform = LoadTexture(renderer, "images\\movingPlatform.png");
         blueThing = LoadTexture(renderer, "images\\bluething.png");
@@ -60,7 +60,7 @@ public:
         SDL_DestroyTexture(uglyWorm);
         SDL_DestroyTexture(backgroundT);
     }
-    void setFullScreen(bool &isFullScreen, int cl) {
+    void setFullScreen(bool &isFullScreen, int cl, bool skip = false) {
         if (isFullScreen) {
             SDL_RenderClear(renderer);
             SDL_SetWindowFullscreen(window, false);  // Switch to windowed mode
@@ -75,14 +75,17 @@ public:
             isFullScreen = true;
         }
         SDL_SetRenderScale(renderer, scale, scale);
-        SDL_Delay(100);
+        if (!skip)
+            SDL_Delay(100);
     }
     void setScale(int cl) {
         if (cl <= 1) {
-            if (height >= 1440)
+            if (height >= 1440) {
                 scale = 3.0f;
-            else
+            }
+            else {
                 scale = 2.3f;
+            }
         }
         else {
             if (height >= 1440)

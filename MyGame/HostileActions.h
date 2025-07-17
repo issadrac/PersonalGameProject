@@ -58,8 +58,8 @@ public:
             appendHostile(tex, Hostile({ 0, 0, 19, 22 }, { 32 * 133, 32 * 10, 19, 22 }, { { 32 * 133, 32 * 10, 19, 22 } }, 3, 1, tex->blueThing));
         }
         else if (cl == 2) {
-            appendHostile(tex, Hostile({ 0, 0, 26, 16 }, { 32 * 6 + 10, 96, 26, 16 }, { {32 * 6 + 10, 104, 8, 8} , {32 * 6 + 18, 96, 18, 16} }, 4, 2, tex->uglyWorm));
-            appendHostile(tex, Hostile({ 0, 0, 19, 22 }, { 32 * 15, 96, 19, 22 }, { { 32 * 15, 96, 19, 22 } }, 6, 1, tex->blueThing, false));
+            appendHostile(tex, Hostile({ 0, 0, 26, 16 }, { 32 * 18, 96, 26, 16 }, { {32 * 6, 104, 8, 8} , {32 * 6 + 8, 96, 18, 16} }, 4, 2, tex->uglyWorm));
+            appendHostile(tex, Hostile({ 0, 0, 19, 22 }, { 32 * 24, 96, 19, 22 }, { { 32 * 24, 96, 19, 22 } }, 6, 1, tex->blueThing, false));
         }
         else if (cl == 3) {
 
