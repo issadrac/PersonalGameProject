@@ -1,5 +1,5 @@
 #pragma once
-class Audio {
+class Audio { // Three almost identical functions due to differences in wav file formats OR logic with naming and calling such as for the level wav
 public:
     SDL_AudioSpec spec;
     Uint8* wav_data = NULL;
@@ -7,7 +7,12 @@ public:
     SDL_AudioStream* levelStream = nullptr;
     SDL_AudioStream* soundStream = nullptr;
     SDL_AudioStream* winningStream = nullptr;
+
     void playLevelWav(int cl) {
+        if (wav_data) {
+            SDL_free(wav_data);
+            wav_data = nullptr;
+        }
         string filename = "level" + to_string(cl) + "sound";
         filename = "Audio\\" + filename + ".wav";
         if (!SDL_LoadWAV(filename.c_str(), &spec, &wav_data, &wav_len)) {
@@ -16,30 +21,37 @@ public:
         if (!levelStream) {
             levelStream = SDL_OpenAudioDeviceStream(SDL_AUDIO_DEVICE_DEFAULT_PLAYBACK, &spec, NULL, NULL);
             SDL_ResumeAudioStreamDevice(levelStream);
+            if (!levelStream) {
+                SDL_Log("Failed to open audio stream: %s", SDL_GetError());
+                SDL_free(wav_data);
+            }
         }
-        if (!levelStream) {
-            SDL_Log("Failed to open audio stream: %s", SDL_GetError());
-            SDL_free(wav_data);
-        }
-        
         SDL_PutAudioStreamData(levelStream, wav_data, wav_len);
     }
     void playWinningWav(string filename) {
         filename = "Audio\\" + filename + ".wav";
+        if (wav_data) {
+            SDL_free(wav_data);
+            wav_data = nullptr;
+        }
         if (!SDL_LoadWAV(filename.c_str(), &spec, &wav_data, &wav_len)) {
             SDL_Log("Couldn't load WAV: %s", SDL_GetError());
         }
         if (!winningStream) {
             winningStream = SDL_OpenAudioDeviceStream(SDL_AUDIO_DEVICE_DEFAULT_PLAYBACK, &spec, NULL, NULL);
             SDL_ResumeAudioStreamDevice(winningStream);
-        }
-        if (!winningStream) {
-            SDL_Log("Failed to open audio stream: %s", SDL_GetError());
-            SDL_free(wav_data);
+            if (!winningStream) {
+                SDL_Log("Failed to open audio stream: %s", SDL_GetError());
+                SDL_free(wav_data);
+            }
         }
         SDL_PutAudioStreamData(winningStream, wav_data, wav_len);
     }
-    void playSomething(string filename) {
+    void playSomething(string filename) { 
+        if (wav_data) {
+            SDL_free(wav_data);
+            wav_data = nullptr;
+        }
         filename = "Audio\\" + filename + ".wav";
         if (!SDL_LoadWAV(filename.c_str(), &spec, &wav_data, &wav_len)) {
             SDL_Log("Couldn't load WAV: %s", SDL_GetError());
@@ -47,11 +59,11 @@ public:
         if (!soundStream) {
             soundStream = SDL_OpenAudioDeviceStream(SDL_AUDIO_DEVICE_DEFAULT_PLAYBACK, &spec, NULL, NULL);
             SDL_ResumeAudioStreamDevice(soundStream);
+            if (!soundStream) {
+                SDL_Log("Failed to open audio stream: %s", SDL_GetError());
+                SDL_free(wav_data);
+            }
         }
-        if (!soundStream) {
-            SDL_Log("Failed to open audio stream: %s", SDL_GetError());
-            SDL_free(wav_data);
-        }  
         SDL_PutAudioStreamData(soundStream, wav_data, wav_len);
     }
     void stopWav() {

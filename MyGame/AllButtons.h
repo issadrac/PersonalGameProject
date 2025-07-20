@@ -9,9 +9,7 @@ public:
 	//Debugging Buttons
 	Button* flipFps = new Button(0, 32 * 2, 32, 32, 255, 0, 0, 255);
 	Button* renderHitBoxes = new Button(32 * 1, 32 * 2, 32, 32, 0, 255, 0, 255);
-	AllButtons() {
 
-	}
 	~AllButtons() {
 		delete level1;
 		delete level2;

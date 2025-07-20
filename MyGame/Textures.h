@@ -2,7 +2,6 @@
 using namespace std;
 class Textures {
 public:
-    SDL_Texture* grassdirt;
     SDL_Texture* uglyWorm;
     SDL_Texture* link;
     SDL_Texture* backgroundT;
@@ -16,8 +15,7 @@ public:
     int width, height;
     float scale;
 
-    // Static method for texture loading (called only once per game session)
-    static SDL_Texture* LoadTexture(SDL_Renderer* render, const string& name) {
+    static SDL_Texture* LoadTexture(SDL_Renderer* render, const string& name) { // Helper funciton to load all the textures
         SDL_Texture* texture = IMG_LoadTexture(render, name.c_str());
         SDL_SetTextureScaleMode(texture, SDL_SCALEMODE_NEAREST);
         if (!texture) {
@@ -26,16 +24,13 @@ public:
         }
         return texture;
     }
-
-    // Method to destroy textures in a vector
-    static void DestroyTextures(vector<SDL_Texture*>& textures) {
+    static void DestroyTextures(vector<SDL_Texture*>& textures) { // To easily destroy a vector of textures
         for (SDL_Texture* tex : textures) {
             SDL_DestroyTexture(tex);
         }
         textures.clear();
     }
-    // Constructor: Load all textures once
-    Textures() {
+    Textures() { // Create the window and load all the smaller textures necessary
         window = SDL_CreateWindow("MyGame", 512, 480, 0);
         if (!window) {
             cout << "Window could not be created! SDL_Error: " << SDL_GetError() << endl;
@@ -53,14 +48,19 @@ public:
         const SDL_DisplayMode* displayMode = SDL_GetCurrentDisplayMode(1);
         width = displayMode->w;
         height = displayMode->h;
-        scale = 1.0f;
+        scale = 1.0f; // Default scale is windowed
     }
     ~Textures() {
         DestroyTextures(platforms);
         SDL_DestroyTexture(uglyWorm);
         SDL_DestroyTexture(backgroundT);
+        SDL_DestroyTexture(link);
+        SDL_DestroyTexture(movingPlatform);
+        SDL_DestroyTexture(blueThing);
+        SDL_DestroyTexture(flag);
+        SDL_DestroyTexture(luckyBox);
     }
-    void setFullScreen(bool &isFullScreen, int cl, bool skip = false) {
+    void toggleFullScreen(bool &isFullScreen, int cl, bool skip = false) {
         if (isFullScreen) {
             SDL_RenderClear(renderer);
             SDL_SetWindowFullscreen(window, false);  // Switch to windowed mode
@@ -80,7 +80,7 @@ public:
     }
     void setScale(int cl) {
         if (cl <= 1) {
-            if (height >= 1440) {
+            if (height >= 1440) { // Dependent on 1080p or 1440p monitor for full screen
                 scale = 3.0f;
             }
             else {
@@ -95,7 +95,7 @@ public:
 
         }
     }
-    void renderText(float cameraX) {
+    void renderText(float cameraX) { // Shows at the top of the screen as the number of the column
         static TTF_Font* font = TTF_OpenFont("dejavu-sans\\DejaVuSans.ttf", 24);
         if (!font) {
             cout << "Failed to load font! TTF_Error: " << SDL_GetError() << std::endl;
