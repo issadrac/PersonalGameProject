@@ -240,5 +240,6 @@ public:
 		i = 0;
 		charSrcRect = { 0,0,TOTAL_CHAR_WIDTH,TOTAL_CHAR_HEIGHT };
 		charDestRect = { 32 * 1,(*platforms.begin()).second.y - charSrcRect.h, TOTAL_CHAR_WIDTH,TOTAL_CHAR_HEIGHT};
+		resetToNormalLink();
 	}
 };
