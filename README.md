@@ -21,7 +21,11 @@ I created MyGame to learn how to implement essential game mechanics such as user
 
 The main menu is first shown which consists of two blue buttons and a red button. The first level is entered by pressing the blue button to the left. That level is the one that should be played. The second level is entered by pressing the blue button to the right but that is only there to show proof of multiple levels working rather than attempting to make an engaging level. The red button in the main menu exits the program when clicked. Press F to fullscreen.
 
-## How to run
+## How to Run: Easy Setup
+
+Download the EasyDoubleClickToRun.zip, extract and double click the exe file to run the game
+
+## How to Run: Visual Studio
 
 ### 1. Install SDL Libraries
 
