@@ -1,0 +1,29 @@
+{
+  "LevelData": {
+    "Window": {"title":"Level 2", "width":512, "height":288, "flags":0},
+    "Scale": {"scaleFor1440p":5.0,"scaleFor1080p":3.8833}
+  },
+  "Platforms": {
+    "Regular": [
+      {"id":0,"rect":{"x":0,"y":4,"w":5,"h":1}},
+      {"id":1,"rect":{"x":5,"y":5,"w":4,"h":1}},
+      {"id":2,"rect":{"x":8,"y":5,"w":1,"h":4}},
+      {"id":3,"rect":{"x":13,"y":6,"w":1,"h":3}},
+      {"id":4,"rect":{"x":13,"y":6,"w":11,"h":1}}
+    ],
+    "Special": [
+    ]
+  },
+  "Ending": {
+  },
+  "HostileDefaults": {
+    "blueThing": { "srcX":0, "srcY":0, "allW":19, "allH":22, "numLethal":1 },
+    "uglyWorm":  { "srcX":0, "srcY":0, "srcAndDestW":26, "srcAndDestH":16, "numLethal":2, "lethalW1":8, "lethalH1":8, "lethalW2":18, "lethalH2":16 }
+  },
+  "Hostiles": [
+      {"name":"blueThing", "destX":17, "destY":5, "lethalX":14, "lethalY":3, "speed":3, "distance":2, "backAndForth":true}
+  ],
+  "MainCharacter": {
+    "StartingPosition": {"destX": 0,"destY": 96}
+  }
+}
